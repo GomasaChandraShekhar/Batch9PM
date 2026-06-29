@@ -9,7 +9,7 @@ const testData: any = readFiles.readCsvFile('./testData/PlaceOrder.csv');
 
 for (const { prodName, country } of testData) {
 
-    test.describe.configure({ mode: 'serial' });
+    // test.describe.configure({ mode: 'serial' });
 
     test.describe(`Place Order ${prodName}`, () => {
 

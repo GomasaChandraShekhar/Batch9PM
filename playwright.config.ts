@@ -1,22 +1,22 @@
 import { defineConfig, devices } from '@playwright/test';
 
-export default defineConfig( {
+export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 1 : 1,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : 2,
+  workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    [ 'html', {
+    ['html', {
       open: 'never',
       // outputFolder: `playwright-report-${new Date().toLocaleString()
       // .replaceAll( /[/:,]/g, '-' )}`
-    } ],
+    }],
     // [ 'dot' ]
     // [ 'line' ]
     // [ 'list' ]
@@ -24,7 +24,7 @@ export default defineConfig( {
     // [ 'junit', { outputFile: 'result.xml' } ]
     // [ 'blob' ]
     // [ 'github' ]
-    [ 'allure-playwright' ]
+    ['allure-playwright']
 
   ],
 
@@ -43,7 +43,7 @@ export default defineConfig( {
     {
       name: 'chromium',
       use: {
-        ...devices[ 'Desktop Chrome' ],
+        ...devices['Desktop Chrome'],
         viewport: { width: 1550, height: 680 },
         // ignoreHTTPSErrors: true,
         // proxy: {
@@ -93,4 +93,4 @@ export default defineConfig( {
   //   url: 'http://localhost:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
-} );
+});
